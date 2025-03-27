@@ -3,6 +3,23 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import "./App.css";
 import { useEffect, useState } from "react";
 
+type Processo = {
+  Processo: string;
+  ValorProcesso: number;
+  Objeto: string;
+  Afastamento: string;
+  AnoProcesso: string;
+  DataAprovacao: string;
+  EnquadramentoLegal: string;
+  Unidade: string;
+  FornecedorVencedor: string;
+  Item: string;
+  Quantidade: string;
+  UnidadeMedida: string;
+  ValorUnitario: number;
+  id: number;
+};
+
 const columns: GridColDef<[number]>[] = [
   {
     field: "id",
@@ -91,12 +108,13 @@ function App() {
       );
 
       const data = await response.json();
-      const identifiedData = data.map((item: any, index: number) => {
+      const identifiedData = data.map((item: Processo, index: number) => {
         return {
           ...item,
           id: index + 1,
         };
       });
+      console.log(identifiedData);
       setRows(identifiedData);
     }
     fetchData();
